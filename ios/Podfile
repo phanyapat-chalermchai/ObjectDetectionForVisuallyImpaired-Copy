@@ -1,0 +1,4 @@
+target 'Runner' do
+  platform :ios, '12.0'
+  # ...
+end
