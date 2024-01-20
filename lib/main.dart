@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(
-        title: 'screen',
+        title: 'หน้าแรก',
       ),
     );
   }
@@ -44,6 +44,27 @@ class _MyHomePageState extends State<MyHomePage> {
   dynamic objectDetector;
   late Size size;
 
+  int _selectedIndex = 0;
+  int _path = 0;
+
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  // static const List<Widget> _widgetOptions = <Widget>[
+  //   Text(
+  //     'Index 0: ตรวจจับวัตถุ',
+  //     style: optionStyle,
+  //   ),
+  //   Text(
+  //     'Index 1: ตรวจจับสี',
+  //     style: optionStyle,
+  //   ),
+  // ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   void initState() {
@@ -51,11 +72,74 @@ class _MyHomePageState extends State<MyHomePage> {
     initializeCamera();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> stackChildren = [];
+    size = MediaQuery.of(context).size;
+    if (controller != null) {
+      stackChildren.add(
+        Positioned(
+          top: 0.0,
+          left: 0.0,
+          width: size.width,
+          height: size.height,
+          child: Container(
+            child: (controller.value.isInitialized)
+                ? AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: CameraPreview(controller),
+            )
+                : Container(),
+          ),
+        ),
+      );
+
+      stackChildren.add(
+        Positioned(
+            top: 0.0,
+            left: 0.0,
+            width: size.width,
+            height: size.height,
+            child: buildResult()),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("แอปตรวจจับวัตถุสำหรับผู้การทางสายตา"),
+        backgroundColor: Colors.blue,
+      ),
+      backgroundColor: Colors.black,
+      body: Container(
+          margin: const EdgeInsets.only(top: 0),
+          color: Colors.black,
+          child: Stack(
+            children: stackChildren,
+          )
+      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'ตรวจจับวัตถุ',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.school),
+      //       label: 'ตรวจจับสี',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   selectedItemColor: Colors.blue,
+      //   onTap: _onItemTapped,
+      // ),
+    );
+  }
+
   //TODO code to initialize the camera feed
   initializeCamera() async {
     //TODO initialize detector
-    final mode = DetectionMode.stream;
-    final modelPath = await _getModel('assets/ml/mobilenet.tflite');
+    const mode = DetectionMode.stream;
+    final modelPath = await _getModel('assets/ml/EFFICIENTNET_LITE4_240103.tflite');
     final options = LocalObjectDetectorOptions(
       modelPath: modelPath,
       classifyObjects: true,
@@ -167,66 +251,22 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> stackChildren = [];
-    size = MediaQuery.of(context).size;
-    if (controller != null) {
-      stackChildren.add(
-        Positioned(
-          top: 0.0,
-          left: 0.0,
-          width: size.width,
-          height: size.height,
-          child: Container(
-            child: (controller.value.isInitialized)
-                ? AspectRatio(
-                    aspectRatio: controller.value.aspectRatio,
-                    child: CameraPreview(controller),
-                  )
-                : Container(),
-          ),
-        ),
-      );
-
-      stackChildren.add(
-        Positioned(
-            top: 0.0,
-            left: 0.0,
-            width: size.width,
-            height: size.height,
-            child: buildResult()),
-      );
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("แอปตรวจจับวัตถุสำหรับผู้การทางสายตา"),
-        backgroundColor: Colors.blue,
-      ),
-      backgroundColor: Colors.black,
-      body: Container(
-          margin: const EdgeInsets.only(top: 0),
-          color: Colors.black,
-          child: Stack(
-            children: stackChildren,
-          )),
-    );
-  }
 }
+
+final FlutterTts flutterTts = FlutterTts();
+speak(String text) async {
+  await flutterTts.awaitSpeakCompletion(true);
+  await flutterTts.setLanguage("th-TH");
+  await flutterTts.setSpeechRate(0.6);
+  await flutterTts.speak(text);
+}
+
 var _count = 0;
 class ObjectDetectorPainter extends CustomPainter {
 
   ObjectDetectorPainter(this.absoluteImageSize, this.objects);
-  final FlutterTts flutterTts = FlutterTts();
   final Size absoluteImageSize;
   final List<DetectedObject> objects;
-  speak(String text) async {
-    await flutterTts.awaitSpeakCompletion(true);
-    await flutterTts.setLanguage("th-TH");
-    await flutterTts.setSpeechRate(0.6);
-    await flutterTts.speak(text);
-  }
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -251,8 +291,10 @@ class ObjectDetectorPainter extends CustomPainter {
 
       var list = detectedObject.labels;
       for (Label label in list) {
+        var showText = label.text;
+        // var showText = "${label.text}  ${label.confidence.toStringAsFixed(2)}";
         TextSpan span = TextSpan(
-            text: label.text,
+            text: showText,
             style: const TextStyle(fontSize: 25, color: Colors.blue));
         TextPainter tp = TextPainter(
             text: span,
