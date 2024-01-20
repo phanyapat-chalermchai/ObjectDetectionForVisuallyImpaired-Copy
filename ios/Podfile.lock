@@ -1,0 +1,165 @@
+PODS:
+  - camera_avfoundation (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_tts (0.0.1):
+    - Flutter
+  - google_mlkit_commons (0.2.0):
+    - Flutter
+    - MLKitVision
+  - google_mlkit_object_detection (0.5.0):
+    - Flutter
+    - google_mlkit_commons
+    - GoogleMLKit/ObjectDetection (~> 3.1.0)
+    - GoogleMLKit/ObjectDetectionCustom (~> 3.1.0)
+  - GoogleDataTransport (9.3.0):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleMLKit/MLKitCore (3.1.0):
+    - MLKitCommon (~> 7.0.0)
+  - GoogleMLKit/ObjectDetection (3.1.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitObjectDetection (~> 2.1.0)
+  - GoogleMLKit/ObjectDetectionCustom (3.1.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitObjectDetectionCustom (~> 2.1.0)
+  - GoogleToolboxForMac/DebugUtils (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - GoogleToolboxForMac/Defines (2.3.2)
+  - GoogleToolboxForMac/Logger (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.2)":
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.2)":
+    - GoogleToolboxForMac/DebugUtils (= 2.3.2)
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
+  - GoogleUtilities/Environment (7.12.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.12.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/UserDefaults (7.12.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilitiesComponents (1.1.0):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.7.2)
+  - MLImage (1.0.0-beta3)
+  - MLKitCommon (7.0.0):
+    - GoogleDataTransport (~> 9.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - GoogleUtilitiesComponents (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.12)
+  - MLKitImageLabelingCommon (4.1.0):
+    - MLKitCommon (~> 7.0)
+    - MLKitVision (~> 4.1)
+  - MLKitObjectDetection (2.1.0):
+    - MLKitCommon (~> 7.0)
+    - MLKitObjectDetectionCommon (~> 4.1)
+    - MLKitVision (~> 4.1)
+    - MLKitVisionKit (~> 5.1)
+  - MLKitObjectDetectionCommon (4.1.0):
+    - MLKitCommon (~> 7.0)
+    - MLKitVision (~> 4.1)
+  - MLKitObjectDetectionCustom (2.1.0):
+    - MLKitCommon (~> 7.0)
+    - MLKitObjectDetectionCommon (~> 4.1)
+    - MLKitVision (~> 4.1)
+    - MLKitVisionKit (~> 5.1)
+  - MLKitVision (4.1.0):
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+    - MLImage (= 1.0.0-beta3)
+    - MLKitCommon (~> 7.0)
+    - Protobuf (~> 3.12)
+  - MLKitVisionKit (5.1.0):
+    - MLKitCommon (~> 7.0)
+    - MLKitImageLabelingCommon (~> 4.1)
+    - MLKitObjectDetectionCommon (~> 4.1)
+    - MLKitVision (~> 4.1)
+  - nanopb (2.30909.1):
+    - nanopb/decode (= 2.30909.1)
+    - nanopb/encode (= 2.30909.1)
+  - nanopb/decode (2.30909.1)
+  - nanopb/encode (2.30909.1)
+  - path_provider_ios (0.0.1):
+    - Flutter
+  - PromisesObjC (2.3.1)
+  - Protobuf (3.25.2)
+
+DEPENDENCIES:
+  - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
+  - google_mlkit_commons (from `.symlinks/plugins/google_mlkit_commons/ios`)
+  - google_mlkit_object_detection (from `.symlinks/plugins/google_mlkit_object_detection/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - GoogleDataTransport
+    - GoogleMLKit
+    - GoogleToolboxForMac
+    - GoogleUtilities
+    - GoogleUtilitiesComponents
+    - GTMSessionFetcher
+    - MLImage
+    - MLKitCommon
+    - MLKitImageLabelingCommon
+    - MLKitObjectDetection
+    - MLKitObjectDetectionCommon
+    - MLKitObjectDetectionCustom
+    - MLKitVision
+    - MLKitVisionKit
+    - nanopb
+    - PromisesObjC
+    - Protobuf
+
+EXTERNAL SOURCES:
+  camera_avfoundation:
+    :path: ".symlinks/plugins/camera_avfoundation/ios"
+  Flutter:
+    :path: Flutter
+  flutter_tts:
+    :path: ".symlinks/plugins/flutter_tts/ios"
+  google_mlkit_commons:
+    :path: ".symlinks/plugins/google_mlkit_commons/ios"
+  google_mlkit_object_detection:
+    :path: ".symlinks/plugins/google_mlkit_object_detection/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
+
+SPEC CHECKSUMS:
+  camera_avfoundation: 07c77549ea54ad95d8581be86617c094a46280d9
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
+  google_mlkit_commons: e9070f57232c3a3e4bd42fdfa621bb1f4bb3e709
+  google_mlkit_object_detection: 651d617dd0bf45b5acd47c05816c97de77dc83d9
+  GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
+  GoogleMLKit: 9d072522949ff0ef4dae5359feaf3db2ef2fa658
+  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
+  GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
+  GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
+  MLImage: 489dfec109f21da8621b28d476401aaf7a0d4ff4
+  MLKitCommon: 20f4aca0ec2bb37cef2b9c211b50586817bac5d3
+  MLKitImageLabelingCommon: c375a2e9b87b614fe1614f003171455751f39371
+  MLKitObjectDetection: f7dba0862771fa0811c3686e8ebc847235432e2a
+  MLKitObjectDetectionCommon: 6cfa8926341cd835490b496116e2a1b797abf86e
+  MLKitObjectDetectionCustom: afa366749c28a0a8b0522ebefaa164e76ee9733f
+  MLKitVision: 639a171d937241f3fcf92bc1b3ef8f179f49916c
+  MLKitVisionKit: fb450e1ec0b7194aa898bf26b47df897dad93773
+  nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
+  Protobuf: 34db13339da0d02d64fa8a2ac6a124cfcc603703
+
+PODFILE CHECKSUM: 978dd492a93a8ef4ec2dc2b3631de447af34068a
+
+COCOAPODS: 1.14.3
