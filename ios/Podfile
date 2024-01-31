@@ -1,5 +1,8 @@
 # Uncomment this line to define a global platform for your project
-platform :ios, '17.0'
+#include "Pods/Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"
+install! 'cocoapods', :warn_for_unused_master_specs_repo => false
+
+platform :ios, '12.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
