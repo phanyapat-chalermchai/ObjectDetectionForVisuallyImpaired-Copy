@@ -210,25 +210,28 @@ class _MyHomePageState extends State<MyHomePage> {
         InputImageFormatValue.fromRawValue(img!.format.raw);
     // if (inputImageFormat == null) return null;
 
-    final planeData = img!.planes.map(
-      (Plane plane) {
-        return InputImagePlaneMetadata(
-          bytesPerRow: plane.bytesPerRow,
-          height: plane.height,
-          width: plane.width,
-        );
-      },
-    ).toList();
+    // final planeData = img!.planes.map(
+    //   (Plane plane) {
+    //     return InputImagePlaneMetadata(
+    //       bytesPerRow: plane.bytesPerRow,
+    //       height: plane.height,
+    //       width: plane.width,
+    //     );
+    //   },
+    // ).toList();
 
-    final inputImageData = InputImageData(
+    final inputImageData = InputImageMetadata(
       size: imageSize,
-      imageRotation: imageRotation!,
-      inputImageFormat: inputImageFormat!,
-      planeData: planeData,
+      rotation: imageRotation!,
+      format: inputImageFormat!,
+      bytesPerRow: img!.planes[0].bytesPerRow,
     );
 
     final inputImage =
-        InputImage.fromBytes(bytes: bytes, inputImageData: inputImageData);
+        InputImage.fromBytes(
+            bytes: bytes,
+            metadata: inputImageData
+        );
 
     return inputImage;
   }
@@ -306,7 +309,7 @@ class ObjectDetectorPainter extends CustomPainter {
             Offset(detectedObject.boundingBox.left * scaleX,
                 detectedObject.boundingBox.top * scaleY));
         _count++;
-        if(_count == 40)
+        if(_count == 100)
         {
           speak(label.text);
           _count = 0;

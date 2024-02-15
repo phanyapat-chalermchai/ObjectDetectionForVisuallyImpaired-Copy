@@ -8,6 +8,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSCameraUsageDescription</key>
     <string>We need access to the camera to detect objects in real-time.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>We need access to the microphone for recording audio.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
     <string>We need access to speech recognition for text-to-speech.</string>
 	<key>CFBundleDisplayName</key>
