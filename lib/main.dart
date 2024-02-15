@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("แอปตรวจจับวัตถุสำหรับผู้การทางสายตา"),
+        title: const Text("แอปตรวจจับวัตถุสำหรับผู้พิการทางสายตา"),
         backgroundColor: Colors.blue,
       ),
       backgroundColor: Colors.black,
