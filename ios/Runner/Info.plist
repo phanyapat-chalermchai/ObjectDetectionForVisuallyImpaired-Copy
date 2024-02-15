@@ -6,8 +6,12 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSCameraUsageDescription</key>
+    <string>We need access to the camera to detect objects in real-time.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+    <string>We need access to speech recognition for text-to-speech.</string>
 	<key>CFBundleDisplayName</key>
-	<string>appdetectobject</string>
+	<string>แอปตรวจจับวัตถุสำหรับผู้พิการทางสายตา</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +19,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>appdetectobject</string>
+	<string>แอปตรวจจับวัตถุสำหรับผู้พิการทางสายตา</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
