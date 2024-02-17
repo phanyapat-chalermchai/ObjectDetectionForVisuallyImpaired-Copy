@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'dart:async';
 
 late List<CameraDescription> cameras;
 
@@ -65,12 +66,38 @@ class _MyHomePageState extends State<MyHomePage> {
       _selectedIndex = index;
     });
   }
+  Timer? speakTimer;
 
   @override
   void initState() {
     super.initState();
     initializeCamera();
+
+    // Start the timer to speak
+    speakTimer = Timer.periodic(Duration(seconds: 2), (timer) {
+      speakDetectedObjectLabel();
+    });
+
+    // Speak "Welcome" when the app starts
+    speak("ยินดีต้อนรับสู่แอปตรวจจับวัตถุสำหรับผู้พิการทางสายตา");
   }
+
+  void speakDetectedObjectLabel() {
+    if (_scanResults != null && _scanResults.isNotEmpty) {
+      var firstObject = _scanResults[0];
+
+      if (firstObject != null && firstObject.labels != null && firstObject.labels.isNotEmpty) {
+        var firstLabel = firstObject.labels[0];
+
+        if (firstLabel.text != null && firstLabel.text.isNotEmpty) {
+          if(firstLabel.text != "Entity"){
+            speak(firstLabel.text);
+          }
+        }
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +190,8 @@ class _MyHomePageState extends State<MyHomePage> {
   //close all resources
   @override
   void dispose() {
+    // Cancel the timer when the widget is disposed
+    speakTimer?.cancel();
     controller?.dispose();
     objectDetector.close();
     super.dispose();
@@ -295,6 +324,9 @@ class ObjectDetectorPainter extends CustomPainter {
       var list = detectedObject.labels;
       for (Label label in list) {
         var showText = label.text;
+        if(showText == "Entity"){
+          break;
+        }
         // var showText = "${label.text}  ${label.confidence.toStringAsFixed(2)}";
         TextSpan span = TextSpan(
             text: showText,
@@ -308,12 +340,12 @@ class ObjectDetectorPainter extends CustomPainter {
             canvas,
             Offset(detectedObject.boundingBox.left * scaleX,
                 detectedObject.boundingBox.top * scaleY));
-        _count++;
-        if(_count == 100)
-        {
-          speak(label.text);
-          _count = 0;
-        }
+        // _count++;
+        // if(_count == 100)
+        // {
+        //   speak(label.text);
+        //   _count = 0;
+        // }
         break;
       }
 
