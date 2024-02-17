@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'dart:async';
 
 late List<CameraDescription> cameras;
 
@@ -66,11 +67,35 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Timer? speakTimer;
+
   @override
   void initState() {
     super.initState();
     initializeCamera();
+    // Start the timer to speak
+    speakTimer = Timer.periodic(Duration(seconds: 4), (timer) {
+      speakDetectedObjectLabel();
+    });
+
+    // Speak "Welcome" when the app starts
+    speak("ยินดีต้อนรับสู่แอปตรวจจับวัตถุสำหรับผู้พิการทางสายตา");
   }
+
+  void speakDetectedObjectLabel() {
+    if (_scanResults != null && _scanResults.isNotEmpty) {
+      var firstObject = _scanResults[0];
+
+      if (firstObject != null && firstObject.labels != null && firstObject.labels.isNotEmpty) {
+        var firstLabel = firstObject.labels[0];
+
+        if (firstLabel.text != null && firstLabel.text.isNotEmpty) {
+          speak(firstLabel.text);
+        }
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -117,21 +142,6 @@ class _MyHomePageState extends State<MyHomePage> {
             children: stackChildren,
           )
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'ตรวจจับวัตถุ',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.school),
-      //       label: 'ตรวจจับสี',
-      //     ),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   selectedItemColor: Colors.blue,
-      //   onTap: _onItemTapped,
-      // ),
     );
   }
 
@@ -163,6 +173,8 @@ class _MyHomePageState extends State<MyHomePage> {
   //close all resources
   @override
   void dispose() {
+    // Cancel the timer when the widget is disposed
+    speakTimer?.cancel();
     controller?.dispose();
     objectDetector.close();
     super.dispose();
@@ -261,7 +273,6 @@ speak(String text) async {
   await flutterTts.speak(text);
 }
 
-var _count = 0;
 class ObjectDetectorPainter extends CustomPainter {
 
   ObjectDetectorPainter(this.absoluteImageSize, this.objects);
@@ -305,12 +316,6 @@ class ObjectDetectorPainter extends CustomPainter {
             canvas,
             Offset(detectedObject.boundingBox.left * scaleX,
                 detectedObject.boundingBox.top * scaleY));
-        _count++;
-        if(_count == 40)
-        {
-          speak(label.text);
-          _count = 0;
-        }
         break;
       }
 
