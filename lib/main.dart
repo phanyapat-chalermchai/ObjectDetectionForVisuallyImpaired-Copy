@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("แอปตรวจจับวัตถุสำหรับผู้การทางสายตา"),
+        title: const Text("แอปตรวจจับวัตถุสำหรับผู้พิการทางสายตา"),
         backgroundColor: Colors.blue,
       ),
       backgroundColor: Colors.black,
@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
   initializeCamera() async {
     //TODO initialize detector
     const mode = DetectionMode.stream;
-    final modelPath = await _getModel('assets/ml/EFFICIENTNET_LITE4_240103.tflite');
+    final modelPath = await _getModel('assets/ml/ef4_0218.tflite');
     final options = LocalObjectDetectorOptions(
       modelPath: modelPath,
       classifyObjects: true,
