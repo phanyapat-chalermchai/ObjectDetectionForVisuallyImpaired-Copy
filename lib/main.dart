@@ -73,8 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     initializeCamera();
+
     // Start the timer to speak
-    speakTimer = Timer.periodic(Duration(seconds: 3), (timer) {
+    speakTimer = Timer.periodic(Duration(seconds: 2), (timer) {
       speakDetectedObjectLabel();
     });
 
